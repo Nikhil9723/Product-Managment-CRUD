@@ -1,3 +1,5 @@
+import storageHandller from "./storage-handllers.js"
+
 class ProductManagment {
     constructor() {
         this.callIntialEventListner()
@@ -12,17 +14,13 @@ class ProductManagment {
         let addproductBtn = document.querySelector(".edit-form-btn")
         let addProductForm = document.getElementById("addProduct-form");
         let closeForm = document.getElementById("cross-btn");
-        console.log(closeForm);
         
-        console.log(getProductdata);
         getProductdata.addEventListener("submit", (e) => {
             e.preventDefault();
             let productName = document.getElementById("product-name").value;
             let productPrice = document.getElementById("product-price").value;
             let productimage = document.getElementById("product-image").value;
             let productDescription = document.getElementById("product-description").value
-            console.log(productName, productPrice, productimage, productDescription);
-            console.log("Helloooo");
 
             this.addproduct(productName, productPrice, productimage, productDescription);
             addProductForm.style.display = "none"
@@ -39,27 +37,20 @@ class ProductManagment {
         let imgPreview = document.createElement("img");
 
         Preview.addEventListener("change", (e) => {
-            console.log("previewwww");
             previewDiv.style.display = "block"
            
-                console.log(e.target.value);
                 imgPreview.src = ''
                 imgPreview.src = e.target.value;
-                console.log(imgPreview.src);
                 previewDiv.appendChild(imgPreview);
         })
 
 
 
-        addproductBtn.addEventListener("click", (e) => {
-            console.log("add product");
-            
+        addproductBtn.addEventListener("click", (e) => {            
                 addProductForm.style.display = "flex";
-            
         })
 
         closeForm.addEventListener("click", (e) => {
-            
             addProductForm.style.display = "none"
             this.clearFormInput()
         })
@@ -74,12 +65,13 @@ class ProductManagment {
     }
 
     addproduct(prodName, prodPrice, prodImage, prodDesc) {
+        const defaultImgUrl = "https://icrier.org/wp-content/uploads/2022/12/media-Event-Image-Not-Found.jpg";
   
         const Product = {
             id: crypto.randomUUID(),
             name: prodName,
             price: prodPrice,
-            imgUrl: prodImage || "https://icrier.org/wp-content/uploads/2022/12/media-Event-Image-Not-Found.jpg",
+            imgUrl: prodImage ||defaultImgUrl,
             description: prodDesc,
         }
         this.storeProductLocal(Product);
@@ -87,15 +79,14 @@ class ProductManagment {
     }   
 
     storeProductLocal(Product) {
-        let ManageProduct = JSON.parse( localStorage.getItem("product") )|| [];
+        let ManageProduct = storageHandller.getStorage("product");
         ManageProduct.push(Product);
-        localStorage.setItem("product", JSON.stringify(ManageProduct));
+        storageHandller.setStorage("product", ManageProduct)
         this.getAllProduct("product");
     }
 
     getAllProduct(productKey) {
-        let ProductDetails = JSON.parse( localStorage.getItem(productKey) )|| []
-        console.log(ProductDetails, "hII");
+        let ProductDetails = storageHandller.getStorage(productKey);
         this.createProduct(ProductDetails);
 
         let anchorTag = document.querySelectorAll(".product-a-style");
@@ -104,7 +95,6 @@ class ProductManagment {
                 if (e.target.tagName === "BUTTON") {
                     e.preventDefault()
                 }
-                console.log(e.target.tagName);
             })
         })
         
@@ -137,19 +127,13 @@ class ProductManagment {
        
         productGroup.addEventListener("click", (e) => {
             let clc = e.target.closest("a")
-            console.log(e.target.value);
             
-            if(e.target.value === "deleteProduct") {
-                // console.log(e.target.id);
-                
+            if(e.target.value === "deleteProduct") {                
                 let deleteId = e.target.id;
                 clc.remove()
-                console.log("Removed");
-
                 this.updateLocalStorage(deleteId);
 
             } else if(e.target.value == "editProduct") {
-                // console.log("hiii from else if");
                 this.editProduct(e.target.id)
 
             }
@@ -170,14 +154,14 @@ class ProductManagment {
         let editProductPrice = document.getElementById("edit-product-price");
         let editProductImage = document.getElementById("edit-product-imgUrl");
         let editProductDescription = document.getElementById("edit-product-desc");
-        let ProductDetails = JSON.parse( localStorage.getItem("product") )|| [];
+
+        let ProductDetails = storageHandller.getStorage("product");
 
         let closeForm = document.getElementById("close-submit-btn");
         submitEditForm.style.display = "flex";
 
           ProductDetails.map((ele) => {
             if(ele.id === editProductId) {
-            console.log(ele.id);
             editProductName.value = ele.name;
             editProductPrice.value = ele.price;
             editProductImage.value = ele.imgUrl;
@@ -189,18 +173,13 @@ class ProductManagment {
         let editImgPreview = document.createElement("img");
         editPreviewDiv.style.display = "inline"
 
-        console.log(editProductImage);
         editImgPreview.src = ''
         editImgPreview.src = editProductImage.value;
-        console.log(editImgPreview.src);
         editPreviewDiv.appendChild(editImgPreview);
          
         editProductImage.addEventListener("change", (e) => {
-            console.log("previewwww");           
-            console.log(e.target.value);
             editImgPreview.src = ''
             editImgPreview.src = e.target.value;
-            console.log(editImgPreview.src);
             editPreviewDiv.appendChild(editImgPreview);
         })
 
@@ -216,8 +195,8 @@ class ProductManagment {
                     ele.description = editProductDescription.value;
                 }
             })
-            localStorage.setItem("product", JSON.stringify(ProductDetails));
-            
+            storageHandller.setStorage("product", ProductDetails)
+        
             this.getAllProduct("product");
             submitEditForm.style.display = "none"
             
@@ -234,7 +213,7 @@ class ProductManagment {
     filterProduct() {
         let filterData = document.getElementById("searchbar");
         filterData.addEventListener("input", (e) => {
-            let ProductDetails = JSON.parse( localStorage.getItem("product") )|| []
+            let ProductDetails = storageHandller.getStorage("product")
             this.showFilterProduct(filterData.value, ProductDetails);
         })
     }
@@ -249,9 +228,7 @@ class ProductManagment {
                 return;
             }
         })
-        console.log(filterArray);
-
-        localStorage.setItem("filterProduct", JSON.stringify(filterArray));
+        storageHandller.setStorage("filterProduct", filterArray)
         this.getAllProduct("filterProduct")    
         if(filterValue === "") {
             this.getAllProduct("product")
@@ -260,19 +237,15 @@ class ProductManagment {
 
 
 
-    updateLocalStorage(deleteProductId) {
-        console.log(deleteProductId);
-        
-        let ProductDetails = JSON.parse( localStorage.getItem("product") )|| []
-        console.log(deleteProductId);
-
+    updateLocalStorage(deleteProductId) {        
+        let ProductDetails = storageHandller.getStorage("product");
         let updatedProductDetails =  ProductDetails.filter((ele) => {
             if(ele.id !== deleteProductId) {
                 return ele;
             }
         })
 
-        localStorage.setItem("product", JSON.stringify(updatedProductDetails));        
+        storageHandller.setStorage("product", updatedProductDetails);     
     }
 
 }
