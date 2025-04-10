@@ -34,6 +34,7 @@ body {
     margin-top: 10px;
     display: flex;
     flex-direction: column;
+    word-break: break-all;
 }
 
 #product-name {
