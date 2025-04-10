@@ -114,6 +114,10 @@ body {
     border-radius: 7px;
 }
 
+button {
+    cursor: pointer;
+}
+
 .mainsection-submit-form {
     padding: 2rem;
     position: fixed;
@@ -266,6 +270,11 @@ body {
 }
 
 .name-style {
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
     font-weight: var(--secondary-medium-font-weight);
     font-size: var(--secondary-large-font-size);
 }
@@ -276,6 +285,11 @@ body {
 }
 
 .desc-style {
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
     font-size: var(--secondary-font-size);
 }
 
