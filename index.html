@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Product managment system</title>
+</head>
+<body>
+    <header>
+        <div class="navbar">
+            <div class="navbar__header">
+                Product managment System
+            </div>
+            <div class="navbar__searchbar-product">
+                <div class="navbar__search-bar">
+                    <input type="text" placeholder="Search For Your Product" id="searchbar" >
+                    <button><img height="100%" width="100%" src="./svgs/search-logo.svg"></button>
+                </div>
+                <button class="edit-form-btn" id="add-product">Add Product</button>
+            </div>
+        </div>
+    </header>
+    <main>
+        <div class="main-section">
+            
+            <div class="mainsection-edit-form" id="addProduct-form">
+
+                <button id="cross-btn"><img height="40px" width="40px" src="./svgs/cross.svg" ></button>
+                <span id="add-prod-title">Add Your Product</span>
+                
+                <form id="add-product-form" class="main-section__form--style">
+                    <div class="product-all">
+                        <label>Product Name</label>
+                        <input type="text" id="product-name" class="input-style" required>
+                    </div>
+                    <div class="product-all">
+                        <label>Product Price</label>
+                        <input type="number" id="product-price" class="input-style">
+                    </div>
+                    <div class="product-all">
+                        <label>Product Image URL</label>
+                        <div class="product-img-style">
+                            <input type="text" id="product-image" class="input-style">
+                            <div id ="img-preview">
+                                <!-- for preview image -->
+                            </div>
+                        </div>
+                       
+                    </div>
+                    <div class="product-all">
+                        <label>Product Description</label>
+                        <input type="text" id="product-description" class="input-style">
+                    </div>
+                    <button type="submit" class="edit-form-btn">Add Product</button>
+                </form>
+            </div>
+                
+            <div class="main-section__product-list" id="Create-Product-details">
+                <div class="main-section__product-list--product-1" >
+                    <img height="250px" width="100%" src="./photos/bag.jpg" loading="lazy">
+                    <div class="product-details">
+                        <span class="name-style">Bag</span>
+                        <span class="price-style">₹ 2000</span>
+                        <span class="desc-style">Black bag</span>
+                        <div class = "edit-delete-style">
+                            <button class="edit-btn-style">Edit</button>       
+                            <button class="delete-btn-style">Delete</button>
+                        </div>
+                        
+                    </div>
+                </div>
+                <div class="main-section__product-list--product-1">
+                    <img height="250px" width="100%" src="./photos/biscyle.jpg" loading="lazy">
+                    <div class="product-details">
+                        <span class="name-style">Bicycle</span>
+                        <span class="price-style">₹ 5000</span>
+                        <span class="desc-style">Black bicycle with gear box</span>
+                        <div class = "edit-delete-style">
+                            <button class="edit-btn-style">Edit</button>       
+                            <button class="delete-btn-style">Delete</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="main-section__product-list--product-1">
+                    <img height="250px" width="100%" src="./photos/camera.jpg" loading="lazy">
+                    <div class="product-details">
+                        <span class="name-style">Nikon 258 UHD</span>
+                        <span class="price-style">₹ 15000</span>
+                        <span class="desc-style">Blck Nikon Camera</span>
+                        <div class = "edit-delete-style">
+                            <button class="edit-btn-style">Edit</button>       
+                            <button class="delete-btn-style">Delete</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="main-section__product-list--product-1">
+                    <img height="250px" width="100%" src="./photos/headphone.jpg" loading="lazy">
+                    <div class="product-details">
+                        <span class="name-style">boat headphone</span>
+                        <span class="price-style">₹ 3000</span>
+                        <span class="desc-style">black boat headphoone with wired and wireless supprot</span>
+                        <div class = "edit-delete-style">
+                            <button class="edit-btn-style">Edit</button>       
+                            <button class="delete-btn-style">Delete</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="main-section__product-list--product-1">
+                    <img height="250px" width="100%" src="./photos/pepsiCan.jpg" loading="lazy">
+                    <div class="product-details">
+                        <span class="name-style">Pespsi 90ml</span>
+                        <span class="price-style">₹ 70</span>
+                        <span class="desc-style">description</span>
+                        <div class = "edit-delete-style">
+                            <button class="edit-btn-style">Edit</button>       
+                            <button class="delete-btn-style">Delete</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="main-section__product-list--product-1">
+                    <img height="250px" width="100%" src="./photos/perfume.jpg" loading="lazy">
+                    <div class="product-details">
+                        <span class="name-style">CHANEL perfume</span>
+                        <span class="price-style">₹ 80000</span>
+                        <span class="desc-style">channel perfume with long lasting fregrance until 48 hours</span>
+                        <div class = "edit-delete-style">
+                            <button class="edit-btn-style">Edit</button>       
+                            <button class="delete-btn-style">Delete</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="main-section__product-list--product-1">
+                    <img height="250px" width="100%" src="./photos/shoe.jpg" loading="lazy">
+                    <div class="product-details">
+                        <span class="name-style">Party Wear shoes</span>
+                        <span class="price-style">₹ 4000</span>
+                        <span class="desc-style">olive party wear shoes</span>
+                        <div class = "edit-delete-style">
+                            <button class="edit-btn-style">Edit</button>       
+                            <button class="delete-btn-style">Delete</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="main-section__product-list--product-1">
+                    <img height="250px" width="100%" src="./photos/shoes2.jpg" loading="lazy">
+                    <div class="product-details">
+                        <span class="name-style">Puma unisex 98 Premium</span>
+                        <span class="price-style">₹ 3000</span>
+                        <span class="desc-style">Puma multi color shoes for casual look</span>
+                        <div class = "edit-delete-style">
+                            <button class="edit-btn-style">Edit</button>       
+                            <button class="delete-btn-style">Delete</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="main-section__product-list--product-1">
+                    <img height="250px" width="100%" src="./photos/sunglas.jpg" loading="lazy">
+                    <div class="product-details">
+                        <span class="name-style">Rayban sunglass</span>
+                        <span class="price-style">₹ 3000</span>
+                        <span class="desc-style">Black rayban sunglass</span>
+                        <div class = "edit-delete-style">
+                            <button class="edit-btn-style">Edit</button>       
+                            <button class="delete-btn-style">Delete</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="main-section__product-list--product-1">
+                    <img height="250px" width="100%" src="./photos/watch.jpg" loading="lazy">
+                    <div class="product-details">
+                        <span class="name-style">boat Smart Watch</span>
+                        <span class="price-style">₹ 2500</span>
+                        <span class="desc-style">white boat premium watch with all digital functions</span>
+                        <div class = "edit-delete-style">
+                            <button class="edit-btn-style">Edit</button>       
+                            <button class="delete-btn-style">Delete</button>
+                        </div>
+                    </div>
+                </div>
+                    
+                    </div>
+                </div>
+            </div>
+         
+        </div>
+
+        <div class="mainsection-submit-form">
+    
+            <button id="close-submit-btn"><img height="40px" width="40px" src="./svgs/cross.svg" ></button>
+            <span id="add-prod-title">Add Your Product</span>
+
+            <form id="edit-product-form" class="main-section__form--style">
+                <div class="product-all">
+                    <label>Name</label>
+                    <input type="text" id="edit-product-name" class="input-style">
+                </div>
+                <div class="product-all">
+                    <label>Price</label>
+                    <input type="text" id="edit-product-price" class="input-style">
+                </div>
+                <div class="product-all">
+                    <label>Image</label>
+                    <div id="product-image-style-edit">
+                        <input type="text" id="edit-product-imgUrl" class="input-style">
+                        <div id ="img-preview-edit">
+                            <!-- for preview image -->
+                        </div>
+                    </div>
+                    
+
+                </div>
+                <div class="product-all">
+                    <label>Description</label>
+                    <input type="text" id="edit-product-desc" class="input-style">
+                </div>
+                <!-- <button type="submit" class="">Edit</button> -->
+                <button type="submit" class="edit-form-btn">Update Product</button>
+            </form>
+        </div>
+        
+    </main>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/uuid/8.3.2/uuid.min.js"></script>
+    <!-- <script src="./Scripts/index.js"></script> -->
+
+</body>
+</html>
